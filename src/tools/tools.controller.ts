@@ -1,5 +1,5 @@
 import { Controller, Post, Response, Body, Req, HttpStatus, Get, Query } from '@nestjs/common';
-import { ApiUseTags, ApiResponse } from '@nestjs/swagger';
+import { ApiUseTags, ApiResponse, ApiImplicitParam } from '@nestjs/swagger';
 import { ToolsService } from './tools.service';
 
 
@@ -26,8 +26,11 @@ export class ToolsController {
         const result = await this.toolsService.getAppModInfos();
         return res.status(HttpStatus.OK).send({ result: result });
     }
-    @Post('createTest')
-    public async createTest(@Response() res, @Query('dbname') dbname: string, @Query('tblname') tblname: string, @Query('schname') schname: string) {
+
+
+    
+    @Post('createTable')
+    public async createTest(@Response() res, @Query('dbname') dbname: string, @Query('tblname') tblname: string, @Query('schvalue') schname: string) {
 
         const result = await this.toolsService.createTable(dbname,tblname,schname);
 
